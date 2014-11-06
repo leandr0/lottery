@@ -3,8 +3,6 @@
  */
 package com.lrgoncalves.megasena;
 
-import java.net.UnknownHostException;
-
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
@@ -33,9 +31,9 @@ public class MongoDBDriver {
 
 		try{
 
-			MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-
-			db = mongoClient.getDB( "mega-sena" );
+			//MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+			MongoClient mongoClient = new MongoClient( "54.207.247.174" , 8080 );
+			db = mongoClient.getDB( "test" );
 			
 			return this;
 		}catch(Exception e){
@@ -53,5 +51,9 @@ public class MongoDBDriver {
 	public void insert(String json){
 		DBObject dbObject = (DBObject)JSON.parse(json);
 		collection.insert(dbObject);
+	}
+	
+	public void insert(DBObject json){
+		collection.insert(json);
 	}
 }
